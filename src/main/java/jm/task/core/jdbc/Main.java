@@ -29,8 +29,8 @@ public class Main {
         System.out.println(userDao.getAllUsers().toString().replaceAll(",","\n"));
         System.out.println("-----------------------------------------------");
 
-        int id = 3;
-        userDao.removeUserById(id);
+        long id = 3;
+        userDao.removeUserById(3);
         System.out.println("Юзер с id: " + id + " удален из базы данных");
         System.out.println(userDao.getAllUsers().toString().replaceAll(",","\n"));
         System.out.println("-----------------------------------------------");
