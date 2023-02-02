@@ -1,15 +1,14 @@
 package jm.task.core.jdbc;
+
 import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
-import jm.task.core.jdbc.util.Util;
+
 import java.sql.SQLException;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException  {
         // реализуйте алгоритм здесь
-        Util util = new Util();
-        util.getNewConnection();
         UserDao userDao = new UserDaoJDBCImpl();
 
         userDao.createUsersTable();
@@ -29,8 +28,8 @@ public class Main {
         System.out.println(userDao.getAllUsers().toString().replaceAll(",","\n"));
         System.out.println("-----------------------------------------------");
 
-        int id = 3;
-        userDao.removeUserById(id);
+        long id = 3;
+        userDao.removeUserById(3);
         System.out.println("Юзер с id: " + id + " удален из базы данных");
         System.out.println(userDao.getAllUsers().toString().replaceAll(",","\n"));
         System.out.println("-----------------------------------------------");

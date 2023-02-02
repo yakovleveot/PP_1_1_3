@@ -7,7 +7,9 @@ public class Util {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
-    public Connection getNewConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    public static Connection getNewConnection() throws SQLException {
+        Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        connection.setAutoCommit(false);
+        return connection;
     }
 }
