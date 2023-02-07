@@ -37,7 +37,6 @@ public class UserDaoJDBCImpl implements UserDao {
                 e.printStackTrace();
             }
         }
-        connection.rollback();
     }
 
     public void dropUsersTable() throws SQLException {
@@ -50,7 +49,6 @@ public class UserDaoJDBCImpl implements UserDao {
                 e.printStackTrace();
             }
         }
-        connection.rollback();
     }
 
     public void saveUser(String name, String lastName, byte age) {
@@ -106,7 +104,6 @@ public class UserDaoJDBCImpl implements UserDao {
             return users;
 
         } else {
-            connection.rollback();
             return Collections.emptyList();
         }
     }
