@@ -51,7 +51,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    public void saveUser(String name, String lastName, byte age) {
+    public void saveUser(String name, String lastName, byte age) throws SQLException {
         String dropTable = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?);";
 
         try (PreparedStatement statement = connection.prepareStatement(dropTable)) {
@@ -63,11 +63,12 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            connection.rollback();
         }
     }
 
 
-    public void removeUserById(long id) {
+    public void removeUserById(long id) throws SQLException {
         String removeUserById = "DELETE FROM users WHERE id = ?;";
 
         try (PreparedStatement statement = connection.prepareStatement(removeUserById)) {
@@ -77,6 +78,7 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            connection.rollback();
         }
     }
 
@@ -108,7 +110,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    public void cleanUsersTable() {
+    public void cleanUsersTable() throws SQLException {
         String cleanUsersTable = "DELETE FROM users;";
 
         try (Statement statement = connection.createStatement()) {
@@ -116,6 +118,7 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            connection.rollback();
         }
     }
 }
